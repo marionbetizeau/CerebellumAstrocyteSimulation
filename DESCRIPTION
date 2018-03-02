@@ -1,4 +1,4 @@
-Package: CerebellumAstrocyteSimulation
+Package: LinSimTool
 Type: Package
 Title: Simulate Astrocyte Lineages
 Version: 0.1.0
