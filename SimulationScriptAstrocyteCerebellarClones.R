@@ -6,7 +6,7 @@
 
 # 0. Go through the readMe on the GitHub repository to install R, RStudio
 # i. Chose the parameter set in the sections: 1, 2, 3 and 4
-# ii. Run the entire scrip click on the Source button in the tool bar (top right of RStudio Editing Window)
+# ii. Run the entire script click on the Source button in the tool bar (top right of RStudio Editing Window)
 
 
 # 1. Global Parameters --------------------------------------------------------------
