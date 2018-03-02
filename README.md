@@ -1,7 +1,7 @@
 # CerebellumAstrocyteSimulation
 Code and package (SimLinTool) to performe astrocyte lineage simulation
 
-Code comprise a R script to perform the analysis
+Code comprise a R script to perform the analysis: SimulationScriptAstrocyteCerebellum.R
 The datasets are embedded in the SimLinTool package and also available as tab delimited tables in the folder
 
 To install the package SimLinTool

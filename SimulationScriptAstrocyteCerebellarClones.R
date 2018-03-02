@@ -2,8 +2,11 @@
 # date: "February 23, 2018"
 # Script to perform simulations Figure 9. From Cerrato et al.
 
-# !!!!!!!!!!!!!!!!!!! To Remove afterwards !!!!!!!!!!!!!!!!!!!!!!  
-setwd("~/Documents/TorinoLab/SimulationCodeCerebellarClones")
+directory <- getwd() 
+cat(paste("Results will be stored in", directory))
+cat("\n")
+cat("To change the output directory use the set setwd, info with ?setwd");cat("\n")
+
 library(LinSimTool)
 library(igraph)
 
@@ -22,16 +25,21 @@ myColors <- c("green", "yellow", "red")
 # Choose the desire age and cerebellar region
 age <-    "E12"       # or "E14"
 region <- "hemisphere" # or "vermis"  
+cat("\n")
+cat("\n")
+cat(age, region);cat("\n") # print the parameters in the console
 
 # Frequencies of the different progenitor types. 
 # MP : multipotent progenitor (For only one multipotent progenitor set freqMP = 1)
 # WMA.P : WMA progenitor, produces exclusively WMA
 freqMP <-     1
 freqWMA.P <-  1 - freqMP  
+cat(freqMP*100, "% of MP");cat("\n")
 
 if(freqWMA.P ==0){ # keep track if only 1 or 2 progenitors
   progType <- "MP"
 }else{ progType <- "MP_WMAP"}
+cat(progType, "progenitor types");cat("\n")
 
 useDataProlif   <- F    # TRUE = using the measured cell cycle exit (from Leto et al, 2011), FALSE = using custom values  (default)
 useDataDiff     <- T    # TRUE = using the measured birth dating values, FALSE = using some custom values (see next section to adapt) 
@@ -42,16 +50,17 @@ replicateNumber <- 5
 if(age == "E12") { numberClonesPerReplicate <- 275} 
 if(age == "E14") { numberClonesPerReplicate <- 98} 
 iterationNumber <- numberClonesPerReplicate * replicateNumber
+cat(paste(replicateNumber,"replicates of",numberClonesPerReplicate, "clones"));cat("\n")
 
 # Probabilities that the first cell of a lineage is a progenitor or postmitotic (proportion of one-cell clones in the observed dataset)
 if (age == "E12"){
-  pInitialCell <- 0.7; print(paste("% Progenitors in the starting population:", pInitialCell*100)) # proportions of 1 cell clones in E12-P30 dataset 
+  pInitialCell <- 0.7; # proportions of 1 cell clones in E12-P30 dataset 
   # 0.85 # alternative from Florio et al 2012 growth fraction in VZ at E12
 }
 if (age == "E14"){
-  pInitialCell <- 0.6; print(paste("% Progenitors in the starting population:", pInitialCell*100)) # proportions of 1 cell clones in E14-P30 dataset 
+  pInitialCell <- 0.6;  # proportions of 1 cell clones in E14-P30 dataset 
 }
-
+cat(pInitialCell*100,"% Progenitors in the starting population");cat("\n")
 
 # 2. Transition Probabilities for Multipotent progenitors (MP) --------------------------------------------------------------
 
@@ -215,10 +224,10 @@ if(useDataProlif == T){ # Case using the measured cell cycle exit based on the r
 # 5. Load the relevant observed datasets --------------------------------------------------------------
 
 if(age == "E12"){
-  observedData <- read.table("./data/Clones_E12_P30.csv", h = T) # loads the corresponding dataset
+  observedData <- Clones_E12_P30 # loads the corresponding dataset
 }
 if(age == "E14"){  
-  observedData <- read.table("./data/Clones_E14_P30.csv", h = T) # loads the corresponding dataset
+  observedData <- Clones_E14_P30 # loads the corresponding dataset
   observedData$clone_subtype[observedData$clone_subtype == "WMA___CNA"] <- "WMA"
 }
 
@@ -348,7 +357,7 @@ if(progType == "MP_WMAP"){
 
 
 
-# 8. Simulate the clones ------------------------------------------------------------
+# 8. Simulate the clones and output the lineages as PDF file ------------------------------------------------------------
 
 simulationName <- paste(Sys.time(), progType, age,region,"Diff", diffParam,"Prolif", prolifParam, round(mean(pamplifMP),3),
                         replicateNumber, "replicates_of", numberClonesPerReplicate,"lineages", sep = "_") 
@@ -409,7 +418,7 @@ for(iter in c(1:iterationNumber)){
   types <- c("MP","WMAP","BG", "GLA", "WMA")
   
   if(nrow(cloneTable) > 2){ # If at least a division in the lineage
-    # Visualize the outcome
+    # Visualize the outcome using the igraph library
     clone.net <- graph.data.frame(cloneTable[2:nrow(cloneTable), ], directed=T)
     myLayout <- layout.reingold.tilford(clone.net)
     
@@ -618,10 +627,10 @@ error.bar(x = myPlot, y = t(ratioAstroMean), upper = t(ratioAstroSD))
 # Comparison P0
 ####
 if(age == "E12"){
-  observedDataP0 <- read.table("./data/Clones_E12_P0.csv", h = T)
+  observedDataP0 <- Clones_E12_P0
 }
 if(age == "E14"){
-  observedDataP0 <- read.table("./data/Clones_E14_P0.csv", h = T)
+  observedDataP0 <- Clones_E14_P0
 }
 
 table(observedDataP0$clone_subtype.1)

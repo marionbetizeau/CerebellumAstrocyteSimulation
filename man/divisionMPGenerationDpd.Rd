@@ -15,20 +15,53 @@ divisionMPGenerationDpd(motherCell = currentCell, cloneOutput = cloneTable,
 
 \item{transitionMatrix}{a list specifying the transition matrix of the particular progenitor type:
 
- - transition.Progenitor : probabilities of cell cycle exit vs amplification of the progenitor
+ - \strong{transition.Progenitor} :  list of 3 elements defining the probabilities of cell cycle exit vs amplification of the progenitor, as well as the potential types produced
+ \describe{
+  \item{probability}{Matrix with columns: probabilities of generating a MP (1st column), or an Astrocyte (2nd column), 
+  
+                                  rows :  for each generation in the simulated lineage (number of rows can vary)}
+  \item{type}{The corresponding names of different possible outcome, in the same order as the columns of the probability matrix (MP, Astro) 
+              (number of types correponds to the number of columns of the above probability matrix)}
+  \item{generationInterval}{Vector of length corresponding to the number of generations, length equal to the number of rows of the matrix probability}
+}
 
- - transition.Astro : probabilities of generating the different astrocyte types after cell cycle exit
+ - \strong{transition.Astro} : probabilities of generating the different astrocyte types after cell cycle exit
+\describe{
+  \item{probability}{Matrix with columns: probabilities of generating a BG (1st column), a GLA (2nd column), or a WMA (3rd column)
+  
+                                  rows :  for each generation in the simulated lineage (number of rows can vary)}
+  \item{type}{The corresponding names of different possible outcome, in the same order as the columns of the probability matrix (BG, GLA, WMA) 
+              (number of types correponds to the number of columns of the above probability matrix)}
+  \item{generationInterval}{Vector of length corresponding to the number of generations, length equal to the number of rows of the matrix probability}
+}
 
- - firstPostMitoticCell : for the one-cell clones, proportions of the observed astrocyte types}
+ - \strong{firstPostMitoticCell} : for the one-cell clones, proportions of the observed astrocyte types}
 
-\item{maxCount}{number of trials after which the function will stop if the lineage never stop (stochasticity issue)}
+\item{maxCount}{number of trials after which the function will stop and return an error message if the lineage never stops (stochasticity issue, the lineage stops when all 
+cells differentiate. If the probability of cell cycle exit is too low, some cell might keep on proliferating indefinitely.)}
 
-\item{parameterInterpolation}{boolean indicating whether interpolation was performed on the input data (always TRUE)}
+\item{parameterInterpolation}{boolean indicating whether interpolation was performed on the input data (always TRUE in the published simulations)}
+}
+\value{
+cloneTable: dataframe containing the information about the simulated lineage
+\describe{
+  \item{motherID}{ID of the mother of the current cell}
+  \item{cellID}{ID of the current cell}
+  \item{type}{Type of the current cell}
+  \item{timepoint}{Generation the current cell is born. Mother cell is initialized at generation 1}
+}
 }
 \description{
 Simulate an astrocyte lineage
 }
 \examples{
+# Simulation of a lineage with a multipotent progenitor as initial cell.
+cloneTable  <- divisionMPGenerationDpd(motherCell = currentCell, 
+                                       cloneOutput = cloneTable, 
+                                       transitionMatrix = list(transition.MP, transition.Astro, firstPostMitoticCell),
+                                       maxCount = 100000)
 
-
+}
+\seealso{
+\code{\link{currentCell}} \code{\link{cloneTable}} \code{\link{transition.MP}} \code{\link{transition.Astro}} \code{\link{firstPostMitoticCell}}
 }

@@ -85,3 +85,66 @@
 #' }
 #' @source Cerrato et al 2018
 "Clones_E12_P0"
+
+#' Example of parameters used to govern multipotent progenitors behavior
+#'
+#' @format A list of 3 elements:
+#' \describe{
+#'   \item{probability}{Matrix with columns: probabilities of generating a MP (1st column), or an Astrocyte (2nd column), 
+#'   
+#'                                   rows :  for each generation in the simulated lineage (number of rows can vary)}
+#'   \item{type}{The corresponding names of different possible outcome, in the same order as the columns of the probability matrix (MP, Astro) 
+#'               (number of types correponds to the number of columns of the above probability matrix)}
+#'   \item{generationInterval}{Vector of length corresponding to the number of generations, length equal to the number of rows of the matrix probability}
+#' }
+#' @source Cerrato et al 2018
+"transition.MP"
+
+
+#' Example of parameters used to govern postmitotic astrocyte differentiation produced by a multipotent progenitor
+#'
+#' @format A list of 3 elements:
+#' \describe{
+#'   \item{probability}{Matrix with columns: probabilities of generating a BG (1st column), a GLA (2nd column), or a WMA (3rd column)
+#'   
+#'                                   rows :  for each generation in the simulated lineage (number of rows can vary)}
+#'   \item{type}{The corresponding names of different possible outcome, in the same order as the columns of the probability matrix (BG, GLA, WMA) 
+#'               (number of types correponds to the number of columns of the above probability matrix)}
+#'   \item{generationInterval}{Vector of length corresponding to the number of generations, length equal to the number of rows of the matrix probability}
+#' }
+#' @source Cerrato et al 2018
+"transition.Astro"
+
+#' Example of parameters used to govern the fate of postmitotic astrocyte directly targeted by the electroporation (1 cell clone)
+#'
+#' @format A list of 2 elements:
+#' \describe{
+#'   \item{probability}{Vector: probabilities of the one cell clone to be a BG (1st column), a GLA (2nd column), or a WMA (3rd column)}
+#'   \item{type}{The corresponding names of different possible outcome, in the same order as the columns of the probability matrix (BG, GLA, WMA) 
+#'               (number of types correponds to order of the probability vector element)}
+#' }
+#' @source Cerrato et al 2018
+"firstPostMitoticCell"
+
+#' Example of initialization of the cloneTable for the divisionMPGenerationDpd function
+#'
+#' @format A dataframe with 4 columns containing initially the data for the 1st mother cell:
+#' \describe{
+#'   \item{motherID}{ID of the mother of the current cell}
+#'   \item{cellID}{ID of the current cell}
+#'   \item{type}{Type of the current cell}
+#'   \item{timepoint}{Generation the current cell is born. Mother cell is initialized at generation 1}
+#' }
+#' @source Cerrato et al 2018
+"cloneTable"
+
+#' Example of initialization of the first mother cell for the divisionMPGenerationDpd function
+#'
+#' @format A dataframe with 1row and 4 columns containing the data for the 1st mother cell:
+#' \describe{
+#'   \item{cellID}{ID of the 1st cell of the lineage}
+#'   \item{type}{Type of the 1st cell of the lineage}
+#'   \item{timepoint}{Set to generation 1}
+#' }
+#' @source Cerrato et al 2018
+"currentCell"
