@@ -2,22 +2,24 @@
 # date: "February 23, 2018"
 # Script to perform simulations Figure 9. From Cerrato et al.
 
-directory <- getwd() 
-cat(paste("Results will be stored in", directory))
-cat("\n")
-cat("To change the output directory use the set setwd, info with ?setwd");cat("\n")
-
-library(LinSimTool)
-library(igraph)
-
 # Instructions ------------------------------------------------------------
 
-# 0. Go through the readMe file to install R, RStudio and the required R packages
+# 0. Go through the readMe on the GitHub repository to install R, RStudio
 # i. Chose the parameter set in the sections: 1, 2, 3 and 4
 # ii. Run the entire scrip click on the Source button in the tool bar (top right of RStudio Editing Window)
 
 
 # 1. Global Parameters --------------------------------------------------------------
+
+# Folder to save the results
+directory <- getwd() 
+cat(paste("Results will be stored in", directory))
+cat("\n")
+cat("To change the output directory use the set setwd, info with ?setwd");cat("\n")
+
+# Loads the required R packages
+library(LinSimTool) # Custom made package available on the gitHub repository to install: 
+library(igraph)
 
 # Colors associated with BG, GLA, WMA
 myColors <- c("green", "yellow", "red")
