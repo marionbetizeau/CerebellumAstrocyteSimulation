@@ -29,22 +29,27 @@ divisionMPGenerationDpd <- function(motherCell = currentCell, cloneOutput = clon
   if(parameterInterpolation == F){
     if(dim(as.matrix(transitionMatrix[[2]]$probability))[1] != (length(transitionMatrix[[2]]$generationInterval)-1)
        | dim(as.matrix(transitionMatrix[[2]]$probability))[2] != (length(transitionMatrix[[2]]$type))){
-      stop('The dimention of the MP transitions are inconsistent, check the type and generationInterval vectors')
+      stop('The dimention of the Astocyte transitions are inconsistent, check the probability, type and generationInterval vectors')
     }
     if(dim(as.matrix(transitionMatrix[[1]]$probability))[1] != (length(transitionMatrix[[1]]$generationInterval)-1)
        | dim(as.matrix(transitionMatrix[[1]]$probability))[2] != (length(transitionMatrix[[1]]$type))){
-      stop('The dimention of the MP transitions are inconsistent, check the type and generationInterval vectors')
+      stop('The dimention of the MP transitions are inconsistent, check the probability, type and generationInterval vectors')
     }
   } else {
     if(dim(as.matrix(transitionMatrix[[2]]$probability))[1] != (length(transitionMatrix[[2]]$generationInterval))
        | dim(as.matrix(transitionMatrix[[2]]$probability))[2] != (length(transitionMatrix[[2]]$type))){
-      stop('The dimention of the MP transitions are inconsistent, check the type and generationInterval vectors')
+      stop('The dimention of the Astocyte transitions are inconsistent, check the probability, type and generationInterval vectors')
     }
     if(dim(as.matrix(transitionMatrix[[1]]$probability))[1] != (length(transitionMatrix[[1]]$generationInterval))
        | dim(as.matrix(transitionMatrix[[1]]$probability))[2] != (length(transitionMatrix[[1]]$type))){
-      stop('The dimention of the MP transitions are inconsistent, check the type and generationInterval vectors')
+      stop('The dimention of the MP transitions are inconsistent, check the probability, type and generationInterval vectors')
+    }
+    if(length(transitionMatrix[[3]]$probabilities != transitionMatrix[[3]]$type)){
+      stop('The dimention of the firstPostMitoticCell probabilitites are inconsistent, check the type and probabilities vectors')
     }
   }
+  
+  
 
   count <- 1
   #numbermother <- dim(motherCell)[1]
