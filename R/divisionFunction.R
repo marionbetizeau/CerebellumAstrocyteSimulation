@@ -10,8 +10,8 @@
 #'
 #'  - firstPostMitoticCell : for the one-cell clones, proportions of the observed astrocyte types
 #'
-#'  @param maxCount number of trials after which the function will stop if the lineage never stop (stochasticity issue)
-#'  @param parameterInterpolation boolean indicating whether interpolation was performed on the input data (always TRUE)
+#'@param maxCount number of trials after which the function will stop if the lineage never stop (stochasticity issue)
+#'@param parameterInterpolation boolean indicating whether interpolation was performed on the input data (always TRUE)
 #'
 #' @examples
 #'
