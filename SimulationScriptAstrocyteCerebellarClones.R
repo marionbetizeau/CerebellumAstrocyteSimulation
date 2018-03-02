@@ -18,7 +18,7 @@ cat("\n")
 cat("To change the output directory use the set setwd, info with ?setwd");cat("\n")
 
 # Loads the required R packages
-library(LinSimTool) # Custom made package available on the gitHub repository to install: 
+library(LinSimTool) # Custom made package available on the gitHub repository to install:    install_github(repo = "marionbetizeau/CerebellumAstrocyteSimulation", auth_token = "593b6d1fc8e79309d70b29ae58b6f7547d47c035")
 library(igraph)
 
 # Colors associated with BG, GLA, WMA
