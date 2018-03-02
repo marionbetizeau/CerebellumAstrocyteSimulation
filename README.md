@@ -1,7 +1,7 @@
 # CerebellumAstrocyteSimulation
 Code and package (SimLinTool) to performe astrocyte lineage simulation
 
-This simulation require R and Rstudio. For downloads see https://cran.r-project.org/ and https://www.rstudio.com/products/rstudio/download/
+This simulation requires R and Rstudio. For downloads see https://cran.r-project.org/ and https://www.rstudio.com/products/rstudio/download/
 
 The simulation functions are in the SimLinTool package , the script SimulationScriptAstrocyteCerebellum.R performs the simulations shown in Cerrato et al.
 
