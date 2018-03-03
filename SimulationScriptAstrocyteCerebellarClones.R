@@ -264,8 +264,9 @@ firstPostMitoticCell.WMAP <- list(probability = matrix(c(0,0,1) , nrow = 1, ncol
 
 
 
-# 7. Interpolate linearly between the different datapoints and plots the input parameters --------------------------------------------------------------
+# 7. Interpolate linearly and plots the input parameters --------------------------------------------------------------
 
+# Interpolate linearly between the different datapoints and plots the input parameters
 # For interpolation need to repeat the last value of the parameters
 pBG <- c(pBG, pBG[length(pBG)])
 pGLA <- c(pGLA, pGLA[length(pGLA)])
